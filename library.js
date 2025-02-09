@@ -6,11 +6,12 @@ function Book(name, author, pages, status) {
     this.status = status;
 }
 
-const books = [new Book('The Republic', 'Plato', 340, 'reading'), new Book('Introduccion a la linguistica', 'Lyons', 300, 'finished'), new Book('Eloquent JavaScript', 'Haverbeke', 412, 'to read'), new Book('Organon', 'Aristotle', 500, 'to read')];
+const books = [new Book('The Republic', 'Plato', 340, 'reading'), new Book('The pragmatic programmer', 'Andy Hunt, Dave Thomas', 300, 'finished'), new Book('Eloquent JavaScript', 'Haverbeke', 412, 'to read'), new Book('Organon', 'Aristotle', 500, 'to read')];
 const statusOptions = ['to read', 'finished', 'reading'];
+const maxLengthToDisplay = {'toAuthors' : 15, 'toTitlePerWord' : 12, 'toTitlesTotal' : 21, 'maxWords' : 3};
 
 function addBookToLibrary(name, author, pages, status) {
-    if (!statusOptions.includes(status.toLowerCase())) {
+    if (!statusOptions.includes(String(status).toLowerCase())) {
         status = statusOptions[0]; // To read is the default status if wrong specified
     }
     books.push(new Book(name, author, pages, status));
@@ -46,7 +47,9 @@ function displayBook(book, section) {
     }
 }
 
+
 function addBookToBookshelf(book) {
+
     if (book.status.toLowerCase() === statusOptions[2]){
         displayBook(book, readingSection);
     } else if (book.status.toLowerCase() === statusOptions[1]){
@@ -66,3 +69,35 @@ function updateLibrary() {
 }
 
 updateLibrary();
+
+const newBook = document.querySelector('.newBook');
+const bookInfo = document.querySelector('.book-info-dialog');
+const closeDialog = document.querySelector('.close-dialog');
+const form = document.querySelector('.edit-book-info');
+
+newBook.addEventListener('click', function(){
+    bookInfo.showModal();
+})
+
+closeDialog.addEventListener('click', () => {
+    bookInfo.close();
+})
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    bookInfo.close();
+    
+    const bookData = new FormData(form);
+
+    let newBookTitle = bookData.get('title');
+    let newBookAuthor = bookData.get('author')
+    let newBookPages = bookData.get('pages');
+    let newBookStatus = bookData.get('status');
+
+    addBookToLibrary(newBookTitle, newBookAuthor, newBookPages, newBookStatus);
+    
+    addBookToBookshelf(books[books.length - 1]);
+    form.reset();
+
+})

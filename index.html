@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -18,8 +18,55 @@
     <div id="wrapper">
         <div class="header">
             <h1 class="title">The Library</h1>
-            <button><p>+</p></button>
+            <button class="newBook"><p>+</p></button>
         </div>
+
+        <dialog class="book-info-dialog">
+            <div class="book-info">
+            <img class="close-dialog" src="./images/close.svg" alt="Close">
+            <form method="POST" action="#" class="edit-book-info">
+
+                <p>
+                    <label for="title">Title </label>
+                    <input type="text" name="title" id="title">
+                </p>
+
+                <p>
+                    <label for="author">Author </label>
+                    <input type="text" name="author" id="author">
+                </p>
+
+                <p>
+                    <label for="pages">Pages </label>
+                    <input type="number" name="pages" id="pages">
+                </p>
+                <legend>Status:</legend>
+                <div class="status">
+                    
+                    <p>
+                        <label for="reading">Reading
+                            <input type="radio" name="status" id="reading" value="reading">
+                            <span class="radio-button"></span>
+                        </label>
+                    </p>
+                    <p>
+                        <label for="to-read">To read
+                            <input type="radio" name="status" id="to-read" value="to read">
+                            <span class="radio-button"></span>
+                        </label>
+                    </p>
+                    <p>
+                        <label for="finished">Finished
+                            <input type="radio" name="status" id="finished" value="finished">
+                            <span class="radio-button"></span>
+                        </label>
+                    </p>
+                </div>
+
+                <button type="submit" >Add book</button>
+            </form>
+        </div>
+        </dialog>
 
         <div class="bookshelf">
 
