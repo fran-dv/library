@@ -29,9 +29,6 @@ This project helped solidify understanding of:
 - DOM manipulation techniques
 - Event handling patterns
 - Modal dialog workflows
-- Form validation strategies
-- State management in vanilla JS
-- Code organization principles
 
 ## Feedback
 
