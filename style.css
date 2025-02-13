@@ -10,6 +10,7 @@
     --other-clr: #B17457;
     --book-cover: #772f0e;
     --status-bg: #4A4947;
+    --radio-btn-bg: rgba(0,0,0,0.5);
     --primary-font: ;
     --secondary-font: rgb(245, 245, 245);
 
@@ -50,20 +51,17 @@ body {
     border: none;
     background-color: var(--book-cover);
     box-shadow: 3px 3px 5px rgb(0,0,0,0.6);
+    font-size: 2rem;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    text-shadow: 2px 2px 3px rgb(0,0,0,0.4);
 }
 
 .header > button:hover {
     background-color: #a03f13;
 }
 
-.header > button > p {
-    font-size: 2rem;
-    color: white;
-    font-weight: 800;
-    text-align: center;
-    align-self: center;
-    text-shadow: 2px 2px 3px rgb(0,0,0,0.4);
-}
 
 .header > .title {
     font-family: 'Charm', sans-serif;
@@ -128,7 +126,7 @@ body {
     text-overflow: ellipsis;
 }
 
-.book > .edit {
+.book > .edit-btn {
     width: 2.3rem;
     height: auto;
     display: flex;
@@ -136,7 +134,7 @@ body {
     filter: brightness(0) saturate(100%) invert(86%) sepia(100%) saturate(1%) hue-rotate(262deg) brightness(98%) contrast(98%);
 }
 
-.book > .edit:hover {
+.book > .edit-btn:hover {
     filter: brightness(0) saturate(100%) invert(82%) sepia(0%) saturate(1502%) hue-rotate(304deg) brightness(95%) contrast(91%);
 }
 
@@ -219,12 +217,13 @@ body {
     border: 2px solid black;
 }
 
-.edit-book-info input[type='radio'] {
-
+.edit-book-info > .status > p > label > input[type='radio'] {
+    position: absolute;
     opacity: 0;
     cursor: pointer;
-    height: 0;
-    width: 0;
+    height: 2.5rem;
+    width: 8rem;
+    z-index: 2;
 }
 
 .edit-book-info > .status {
@@ -233,11 +232,13 @@ body {
     align-items: baseline;
 }
 
-.edit-book-info > div > p > label {
+.edit-book-info > .status > p > label {
     display: flex;
     flex-direction: row-reverse;
     justify-content: baseline;
     gap: 0.5rem;
+    cursor: pointer;
+    width: auto;
 }
 
 .edit-book-info > div > p > label > .radio-button {
@@ -248,12 +249,12 @@ body {
     background-color: white;
 }
 
-.edit-book-info input[type='radio']:hover ~ .radio-button {
-    background-color: var(--main-bg);
+.edit-book-info > .status > p > label > input[type='radio']:hover ~ .radio-button {
+    background-color: var(--radio-btn-bg);
 }
 
 .edit-book-info input[type='radio']:checked ~ .radio-button {
-    background-color: rgba(0,0,0,0.5);
+    background-color: var(--radio-btn-bg);
 }
 
 .edit-book-info button {
@@ -274,4 +275,18 @@ body {
 
 .edit-book-info button:hover {
     background-color: #a03f13;
+}
+
+.edit-book-buttons {
+    align-self: stretch;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.edit-book-info > .edit-book-buttons > .delete-book {
+    background-color: #a11212;
+}
+
+.edit-book-info > .edit-book-buttons > .delete-book:hover {
+    background-color: #b81414;
 }
