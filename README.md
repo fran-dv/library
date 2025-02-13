@@ -6,7 +6,7 @@ A minimalistic web-based library manager for tracking reading progress.
 
 **Live version:** [![Live Demo](https://img.shields.io/badge/demo-live-green)](https://fran-dv.github.io/library/)
 
-<img src="./images/site-preview.png" style="width:900px; height: auto;">
+<img src="./images/site-preview.png" style="width:900px; height: auto;" alt="Library app preview">
 
 ## Features
 
