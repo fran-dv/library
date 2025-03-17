@@ -1,14 +1,47 @@
-// Book constructor
-function Book(name, author, pages, status) {
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
+class Book {
+    constructor (name, author, pages, status)  {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
+
+    set name(name) {
+        this._name = name;
+    }
+
+    set author(author) {
+        this._author = author;
+    }
+
+    set pages(pagesAmount) {
+        this._pages = pagesAmount;
+    }
+
+    set status(status) {
+        this._status = status;
+    }
+
+    get name() {
+        return this._name; 
+    }
+
+    get author() {
+        return this._author; 
+    }
+
+    get pages() {
+        return this._pages; 
+    }
+
+    get status() {
+        return this._status; 
+    }
+    
 }
 
 const books = [new Book('The Republic', 'Plato', 340, 'reading'), new Book('The pragmatic programmer', 'Andy Hunt, Dave Thomas', 300, 'finished'), new Book('Eloquent JavaScript', 'Haverbeke', 412, 'to read'), new Book('Organon', 'Aristotle', 500, 'to read')];
 const statusOptions = ['to read', 'finished', 'reading'];
-
 
 function addBookToLibrary(name, author, pages, status) {
     if (!statusOptions.includes(String(status).toLowerCase())) {
@@ -51,7 +84,6 @@ function displayBook(book, section) {
 }
 
 function addBookToBookshelf(book) {
-
     const readingSection = document.querySelector('.section.reading');
     const toReadSection = document.querySelector('.section.to-read');
     const finishedSection = document.querySelector('.section.finished');
@@ -104,10 +136,7 @@ function preventDefault(form) {
     })
 }
 
-// 
 function submitNewBookForm(form, dialogToClose) {
-    
-    
     const bookData = new FormData(form);
 
     let newBookTitle = bookData.get('title');
@@ -116,13 +145,11 @@ function submitNewBookForm(form, dialogToClose) {
     let newBookStatus = bookData.get('status');
 
     addBookToLibrary(newBookTitle, newBookAuthor, newBookPages, newBookStatus);
-    
     addBookToBookshelf(books[books.length - 1]);
     form.reset();
     if (dialogToClose.open) {
         dialogToClose.close();
     }
-
 }
 
 function clickOnCloseDialog(dialogToClose) {
@@ -141,7 +168,6 @@ function clickOnEditBook(bookIndex, dialogToDisplay) {
             'pages' : document.querySelector('.book-info-dialog.edit input#pages'),
             'status' : document.querySelectorAll('.book-info-dialog.edit input[type="radio"]')
         }
-
         input.title.value = books[bookIndex].name;
         input.author.value = books[bookIndex].author;
         input.pages.value = books[bookIndex].pages;
@@ -157,20 +183,16 @@ function clickOnEditBook(bookIndex, dialogToDisplay) {
 }
 
 function clickOnUpdateBook(form, bookIndex, dialogToClose) {
-
     books.splice(bookIndex, 1);
     const bookData = new FormData(form);
-
     let newBookTitle = bookData.get('title');
     let newBookAuthor = bookData.get('author')
     let newBookPages = bookData.get('pages');
     let newBookStatus = bookData.get('status');
 
     addBookToLibrary(newBookTitle, newBookAuthor, newBookPages, newBookStatus);
-    
     addBookToBookshelf(books[books.length - 1]);
     form.reset();
-
     updateLibrary();
     if (dialogToClose.open) {
         dialogToClose.close();
@@ -217,7 +239,6 @@ document.querySelector('#wrapper').addEventListener('click', function(event) {
 
     console.log(target);
 
-
     switch (target.dataset.action) {
         case 'new-book':
             clickOnNewBook(newBookDialog);
@@ -248,5 +269,3 @@ document.querySelector('#wrapper').addEventListener('click', function(event) {
             break;
     }
 })
-
-
